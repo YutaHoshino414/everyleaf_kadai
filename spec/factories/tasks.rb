@@ -9,4 +9,9 @@ FactoryBot.define do
     name { 'デフォルトのタスク２' }
     content { 'デフォルトのコンテント２' }
   end
+
+  factory :third_task, class: Task do
+    name { 'デフォルトのタスク３' }
+    content { 'デフォルトのコンテント３' }
+  end
 end

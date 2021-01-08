@@ -4,6 +4,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
     FactoryBot.create(:task)
     @task = FactoryBot.create(:second_task)
+    FactoryBot.create(:third_task)
   end
 
   describe '新規作成機能' do
@@ -30,7 +31,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         # ここに実装する
         visit tasks_path
         task = all('tbody tr')
-        expect(task.first).to have_content 'デフォルトのタスク２'
+        expect(task.first).to have_content 'デフォルトのタスク３'
+        expect(task[1]).to have_content 'デフォルトのタスク２'
+        expect(task[2]).to have_content 'デフォルトのタスク１'
       end
     end
 
