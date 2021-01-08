@@ -30,7 +30,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         # ここに実装する
         visit tasks_path
         task = all('tbody tr')
-        expect(page).to have_content 'kenshirou'
+        expect(task.first).to have_content 'デフォルトのタスク２'
       end
     end
 
