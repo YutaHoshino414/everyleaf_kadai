@@ -4,6 +4,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
     FactoryBot.create(:task)
     @task = FactoryBot.create(:second_task)
+    FactoryBot.create(:third_task)
   end
 
   describe '新規作成機能' do
@@ -25,6 +26,17 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'task01'
       end
     end
+    context 'タスクが作成日時の降順に並んでいる場合' do
+      it '新しいタスクが一番上に表示される' do
+        # ここに実装する
+        visit tasks_path
+        task = all('tbody tr')
+        expect(task.first).to have_content 'デフォルトのタスク３'
+        expect(task[1]).to have_content 'デフォルトのタスク２'
+        expect(task[2]).to have_content 'デフォルトのタスク１'
+      end
+    end
+
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do

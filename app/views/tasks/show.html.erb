@@ -1,4 +1,4 @@
 <h1>タスク詳細</h1>
-<p>タスク名: <%= @task.name %></p>
-<p>タスク詳細: <%= @task.content %></p><br>
+<p><%= t('activerecord.attributes.task.name') %>: <%= @task.name %></p>
+<p><%= t('activerecord.attributes.task.content') %>: <%= @task.content %></p><br>
 <%= link_to "投稿一覧に戻る", tasks_path %>
