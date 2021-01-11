@@ -9,9 +9,17 @@
     <%= form.text_field :content %>
   </div>
   <div>
-  <%= form.label :deadline %>
-  <%= form.text_field :deadline %>
-</div>
+    <%= form.label :deadline %>
+    <%= form.text_field :deadline %>
+  </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.to_a, { include_blank: '選択してください'} %>
+  </div>
+  <div>
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys.to_a, { include_blank: '選択してください'} %>
+  </div>
   <br>
   <%= form.submit %>
 <% end %>
