@@ -23,7 +23,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 #Test
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-#追記
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  #追記
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
@@ -47,3 +50,6 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'kaminari'
+gem 'bootstrap', '~> 4.5.3'
+gem 'jquery-rails'
