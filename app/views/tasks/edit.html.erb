@@ -1,25 +1,27 @@
-<h2>編集する</h2>
-<%= form_with(model: @task, local: true) do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <div>
-    <%= form.label :deadline %>
-    <%= form.text_field :deadline %>
-  </div>
-  <div>
-    <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys.to_a, { include_blank: '選択してください'} %>
-  </div>
-  <div>
-    <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys.to_a, { include_blank: '選択してください'} %>
-  </div>
-  <br>
-  <%= form.submit %>
-<% end %>
+<h2>タスク編集画面</h2><hr>
+<div class="w-50">
+  <%= form_with(model: @task, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+    <div class="w-50 mb-3">
+      <%= form.label :deadline %>
+      <%= form.text_field :deadline, class: "form-control" %>
+    </div>
+    <div class="w-50 mb-3">
+      <%= form.label :status %>
+      <%= form.select :status, Task.statuses.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
+    </div>
+    <div class="w-50 mb-3">
+      <%= form.label :priority %>
+      <%= form.select :priority, Task.priorities.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
+    </div>
+    <br>
+    <%= form.submit '更新する', class:"btn btn-success" %>
+  <% end %>
+</div>
