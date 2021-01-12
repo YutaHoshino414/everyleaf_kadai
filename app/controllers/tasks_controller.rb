@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
-    #  @tasks = Task.all.page(params[:page]).per(5)
+      @tasks = Task.all.page(params[:page]).per(5)
     if params[:sort_expired]
       @tasks = Task.all.order(deadline: :desc)
     else
@@ -13,13 +13,14 @@ class TasksController < ApplicationController
       @tasks = Task.all.order(priority: :desc)
     end  
 
-    
-      if params[:name].present?
-        @tasks = Task.where('name LIKE ?', "%#{params[:name]}%")
-      end
-
-      if params[:status].present?
-        @tasks = Task.where(status: params[:status])
+    if params[:name].present? && params[:status].present?
+      @tasks = Task.where('name LIKE ?', "%#{params[:name]}%")
+      @tasks = @tasks.where(status: params[:status])
+    elsif params[:name].present?
+          @tasks = Task.where('name LIKE ?', "%#{params[:name]}%")
+      
+    elsif params[:status].present?
+          @tasks = Task.where(status: params[:status])
       end
     
       @tasks = @tasks.page(params[:page]).per(5)
