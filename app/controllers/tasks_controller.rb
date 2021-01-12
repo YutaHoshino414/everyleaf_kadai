@@ -17,6 +17,10 @@ class TasksController < ApplicationController
       if params[:name].present?
         @tasks = Task.where('name LIKE ?', "%#{params[:name]}%")
       end
+
+      if params[:status].present?
+        @tasks = Task.where(status: params[:status])
+      end
     
       @tasks = @tasks.page(params[:page]).per(5)
   end

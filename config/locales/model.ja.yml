@@ -9,3 +9,4 @@ ja:
         deadline: 終了期限
         status: ステータス
         priority: 優先度
+        created_at: 登録日時
