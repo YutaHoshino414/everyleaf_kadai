@@ -13,15 +13,15 @@
   <%= form_with(model: @task, local: true) do |form| %>
     <div class="mb-3">
       <%= form.label :name %>
-      <%= form.text_field :name, class: "form-control" %>
+      <%= form.text_field :name,  placeholder: "タスク名を入力..", class: "form-control" %>
     </div>
     <div class="mb-3">
       <%= form.label :content %>
-      <%= form.text_area :content, class: "form-control" %>
+      <%= form.text_area :content, placeholder: "タスクの詳細を入力してください..", class: "form-control" %>
     </div>
     <div class="w-50 mb-3">
       <%= form.label :deadline %>
-      <%= form.text_field :deadline, class: "form-control" %>
+      <%= form.date_field :deadline, class: "form-control" %>
     </div>
     <div class="w-50 mb-3">
       <%= form.label :status %>
