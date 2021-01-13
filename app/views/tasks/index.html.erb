@@ -1,11 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <h1>タスク一覧</h1>
-<table>
+<%= form_with url: tasks_path, method: :get, local: true do |f| %>
+  <div class="row w-75">
+      <div class="col">
+        <span>タスク名</span>
+        <%= f.text_field :name, placeholder: "検索..", class: "form-control" %>
+      </div>
+      <div class="col">
+      <span>ステータス</span>
+        <%= f.select :status, Task.statuses.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
+      </div>
+      <%= f.submit '検索', class: "btn btn-outline-info" %>
+  </div>
+<% end %><hr>
+  <%= link_to '新規登録', new_task_path, class: "btn btn-primary" %><br><br><span>　<span>
+  <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true"),class: "btn btn-secondary btn-sm" %><span>　<span>
+  <%= link_to "優先度高い順でソート", tasks_path(sort_priority: "true"),class: "btn btn-secondary btn-sm" %><br><br>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>タスク</th>
+      <th>タスク名</th>
       <th>タスク詳細</th>
+      <th>終了期限</th>
+      <th>登録日時</th>
+      <th>ステータス</th>
+      <th>優先度</th>
     </tr>
   </thead>
   <tbody>
@@ -13,11 +33,15 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.content %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task.id) %></td>
-        <td><%= link_to '削除', task_path(task.id), method: :delete, data: {confirm: "本当に削除していいですか？"} %></td>
+        <td><%= task.deadline %>　　</td>
+        <td><%= task.created_at.strftime('%Y-%m-%d %T') %></td>
+        <td><%= task.status %>　　</td>
+        <td><%= task.priority %>　　</td>
+        <td><%= link_to '詳細', task_path(task.id), class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '編集', edit_task_path(task.id), class: "btn btn-outline-success" %></td>
+        <td><%= link_to '削除', task_path(task.id), method: :delete, class: "btn btn-outline-danger" , data: {confirm: "本当に削除していいですか？"} %></td>
       </tr>
     <% end %>
   </tbody>
 </table><br>
-<%= link_to '新規投稿', new_task_path %>
+<div class="pagenate"><%= paginate @tasks %></div>

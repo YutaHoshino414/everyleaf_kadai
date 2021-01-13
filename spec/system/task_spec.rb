@@ -13,6 +13,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_name', with: 'タスク01'
         fill_in 'task_content', with: 'タスク詳細01'
+        fill_in 'task_deadline', with: '02021-01-12'
+        select '着手中', from: 'task[status]'
         click_on '登録'
         expect(page).to have_content 'タスク01'
       end
@@ -31,12 +33,54 @@ RSpec.describe 'タスク管理機能', type: :system do
         # ここに実装する
         visit tasks_path
         task = all('tbody tr')
-        expect(task.first).to have_content 'デフォルトのタスク３'
+        expect(task[0]).to have_content 'デフォルトのタスク３'
         expect(task[1]).to have_content 'デフォルトのタスク２'
         expect(task[2]).to have_content 'デフォルトのタスク１'
       end
     end
+    context '終了期限をクリックした場合' do
+      it '終了期限の降順で表示される' do
+        visit tasks_path
+        visit current_path
+        click_link '終了期限でソートする' 
+        sleep 3
+        task = all('tbody tr')
+        expect(task[0]).to have_content 'デフォルトのタスク１'
+        expect(task[1]).to have_content 'デフォルトのタスク２'
+        expect(task[2]).to have_content 'デフォルトのタスク３'
+      end
+    end
 
+    context 'タスク名のみで検索した場合' do
+      it 'タスク名の検索結果が反映されたタスクが表示される' do
+        visit tasks_path
+        fill_in 'name', with: 'タスク１'
+        click_on '検索' 
+        expect(page).to have_content 'タスク１'
+      end
+    end
+    context 'ステータスのみで検索した場合' do
+      it 'ステータスの検索結果が反映されたタスクが表示される' do
+        visit tasks_path
+        # select '着手中', from: 'task_status'
+        find("option[value='着手中']").select_option
+        click_on '検索'
+        task = all('tbody tr')
+        expect(task.first).to have_content 'タスク２'
+      end
+    end
+    context 'タスク名とステータスで検索した場合' do
+      it '両方の検索結果が反映されたタスクが表示される' do
+        visit tasks_path
+        fill_in 'name', with: 'デフォルト'
+        find("option[value='完了']").select_option
+        sleep 2.5
+        click_on '検索'
+        task = all('tbody tr')
+        expect(task.first).to have_content 'タスク３'
+
+      end
+    end
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do

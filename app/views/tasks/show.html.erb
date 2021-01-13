@@ -1,4 +1,31 @@
-<h1>タスク詳細</h1>
-<p><%= t('activerecord.attributes.task.name') %>: <%= @task.name %></p>
-<p><%= t('activerecord.attributes.task.content') %>: <%= @task.content %></p><br>
-<%= link_to "投稿一覧に戻る", tasks_path %>
+<h1>タスク詳細</h1><br>
+
+<table class="table table-striped w-75">
+  <tbody>
+      <tr>
+        <th><%= t('activerecord.attributes.task.name') %></th>
+        <td><%= @task.name %></td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.task.content') %></th>
+        <td><%= @task.content %></td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.task.deadline') %></th>
+        <td><%= @task.deadline %>　　</td>
+      </tr>
+      <tr> 
+        <th><%= t('activerecord.attributes.task.created_at') %></th>
+        <td><%= @task.created_at.strftime('%Y-%m-%d %T') %></td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.task.status') %></th>
+        <td><%= @task.status %>　　</td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.task.priority') %></th>
+        <td><%= @task.priority %>　　</td>
+      </tr>
+  </tbody>
+</table><hr>
+<%= link_to "タスク一覧に戻る", tasks_path, class: "btn btn-outline-primary" %>
