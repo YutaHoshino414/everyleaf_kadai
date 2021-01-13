@@ -6,5 +6,5 @@ class Task < ApplicationRecord
   scope :status_is, -> (status) { where(status: status) }
 
   enum status:{ 未着手: 0, 着手中: 1, 完了: 2 }
-  enum priority:{ 底: 0, 中: 1, 高: 2 }
+  enum priority:{ 低: 0, 中: 1, 高: 2 }
 end

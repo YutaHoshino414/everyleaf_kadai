@@ -43,6 +43,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         visit current_path
         click_link '終了期限でソートする' 
+        sleep 3
         task = all('tbody tr')
         expect(task[0]).to have_content 'デフォルトのタスク１'
         expect(task[1]).to have_content 'デフォルトのタスク２'
