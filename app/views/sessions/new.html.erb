@@ -1,0 +1,11 @@
+<h1>ログイン</h1>
+<p>アカウントをお持ちの方は、下記よりログインする</p><hr>
+<div class="w-50">
+  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, placeholder: "メールアドレスを入力..", class:"form-control" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: "パスワードを入力..", class:"form-control" %> <br>
+    <%= f.submit "ログインする",  class: "btn btn-lg, btn-primary" %>
+  <% end %><br>
+</div>
