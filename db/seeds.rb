@@ -16,3 +16,7 @@ User.create!(
   password: password,
   password_confirmation: password,
 )
+#2つ目のuser(ブラウザ操作にて作成)
+#name =test01
+#email = "test@test.com"
+#password = "password"
