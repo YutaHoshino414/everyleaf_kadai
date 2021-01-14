@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#最初のユーザをseedで作成する
+name = "user01"
+email = "user01@test.com"
+password = "password"
+User.create!(
+  name: name,
+  email: email,
+  password: password,
+  password_confirmation: password,
+)
