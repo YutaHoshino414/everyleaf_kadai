@@ -1,2 +1,31 @@
+<h2>ユーザー新規登録画面</h2><hr>
+<div class="w-50">
+  <%= form_with(model: @user,url: admin_users_path, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name %>
+      <%= form.text_field :name,  placeholder: "ユーザー名を入力..", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email %>
+      <%= form.text_field :email, placeholder: "メールアドレスを入力..", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+    <%= form.check_box(:admin, {}, checked_value = true, unchecked_value = false) %>
+      <%= form.label :admin %>
+    </div>
+    <div class="w-50 mb-3">
+      <%= form.label :password %>
+      <%= form.text_field :password, class: "form-control" %>
+    </div>
+    <div class="w-50 mb-3">
+      <%= form.label :password_confirmation %>
+      <%= form.text_field :password_confirmation ,class: "form-control" %>
+    </div>
+   
+    <br>
+      <%= form.submit '登録する', class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <h1>Admin::Users#new</h1>
 <p>Find me in app/views/admin/users/new.html.erb</p>

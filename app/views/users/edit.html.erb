@@ -3,21 +3,16 @@
   <%= form_with(model: @user, local: true) do |form| %>
     <div class="mb-3">
       <%= form.label :name %>
-      <%= form.text_field :name,  placeholder: "ユーザー名を入力..", class: "form-control" %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
     <div class="mb-3">
       <%= form.label :email %>
-      <%= form.text_field :email, placeholder: "メールアドレスを入力..", class: "form-control" %>
-    </div>
-    <div class="mb-3">
-    <%= form.check_box(:admin, {}, checked_value = true, unchecked_value = false) %>
-      <%= form.label :admin %>
+      <%= form.text_field :email, class: "form-control" %>
     </div>
     <%= form.label :password %>
     <%= form.hidden_field :password, value: @user.password_digest %><br>
     <%= form.label :password_confirmation %>
     <%= form.hidden_field :password_confirmation, value: @user.password_digest %><br>
-    <br>
     <br>
       <%= form.submit '編集する', class: "btn btn-success" %>
   <% end %>
