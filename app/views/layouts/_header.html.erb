@@ -1,6 +1,6 @@
 <div class="login">
   <% if logged_in? %>
-      <%= link_to "Myページ(ログイン中)", user_path(current_user.id), class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to "Myページ(ログイン中)", admin_user_path(current_user.id), class: "btn btn-outline-primary btn-sm" %>
       <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "btn btn-secondary btn-sm" %>
   <% else %>
       <%= link_to "Sign up", new_user_path, class: "btn btn-outline-primary btn-sm" %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in?, only: [:index, :new, :show]
-  before_action :ensure_correct_user, only: [:show, :edit, :update]
+  before_action :ensure_correct_user, only: [:show]
 
   def new
     @user = User.new

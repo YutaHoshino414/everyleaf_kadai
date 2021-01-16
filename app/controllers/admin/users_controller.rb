@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
-
+  # before_action :admin_user
   def index
     @users = User.all.includes(:tasks)
+    @users = @users.page(params[:page]).per(5)
   end
 
   def new
@@ -36,13 +37,22 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: "ユーザーを削除しました"
+    @user = User.find(params[:id])
+
+    if @user.destroy
+      redirect_to admin_users_path, notice: "ユーザーを削除しました"
+    else
+      redirect_to admin_users_path, notice: "管理者は2人以上必要です"
+    end
   end
 
   private
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
   end
+
+  # def admin_user
+  #   redirect_to root_path , notice: "管理者以外はアクセスできません" unless current_user.admin?
+  # end
   
 end
