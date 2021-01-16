@@ -15,6 +15,10 @@
         <th>アカウント登録日</th>
         <td><%= @user.created_at.strftime('%Y-%m-%d %T') %></td>
       </tr>
+      <tr>
+      <th>管理者権限</th>
+      <td><%= @user.admin %></td>
+    </tr>
   </tbody>
 </table><br><hr>
 <h3>Myタスク一覧</h3>
