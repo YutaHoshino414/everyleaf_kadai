@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   before_action :logged_in?, only: [:index, :new, :show]
-  before_action :ensure_correct_user, only: [:show]
+  before_action :ensure_correct_user, only: [:show, :edit, :update]
 
   def new
+    if logged_in?
+      redirect_to tasks_path, notice: "新規ユーザー作成は、一度ログアウトしてください"
+    else
     @user = User.new
+    end
   end
 
   def create

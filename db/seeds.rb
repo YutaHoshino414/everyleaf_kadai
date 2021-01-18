@@ -20,3 +20,7 @@ User.create!(
 #name =test01
 #email = "test@test.com"
 #password = "password"
+
+# admin01
+# admin@test.com
+# password 

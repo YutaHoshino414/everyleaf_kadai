@@ -9,6 +9,10 @@
       <%= form.label :email %>
       <%= form.text_field :email, class: "form-control" %>
     </div>
+    <div class="w-25 mb-3">
+      <%= form.label :admin %>
+      <%= form.select :admin,[['付与しない',false],['付与する',true]], { include_blank: '選択してください' }, class: "form-control" %> 
+    </div>
     <%= form.label :password %>
     <%= form.hidden_field :password, value: @user.password_digest %><br>
     <%= form.label :password_confirmation %>

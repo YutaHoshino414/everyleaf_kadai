@@ -20,7 +20,8 @@
       <td><%= @user.admin %></td>
     </tr>
   </tbody>
-</table><br><hr>
+</table>
+<%= link_to '編集', edit_user_path(@user.id), class: "btn btn-outline-success" %><br><hr>
 <h3>Myタスク一覧</h3>
   <table class="table">
     <tr>
