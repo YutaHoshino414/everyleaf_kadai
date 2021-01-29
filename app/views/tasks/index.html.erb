@@ -9,6 +9,10 @@
       <span>ステータス</span>
         <%= f.select :status, Task.statuses.keys.to_a, { include_blank: '選択してください'}, class: "form-control" %>
       </div>
+      <div class="col">
+      <span>ラベル</span>
+      <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: '選択してください' }, class: "form-control") %>
+      </div>
       <%= f.submit '検索', class: "btn btn-outline-info" %>
   </div>
 <% end %><hr>
@@ -24,6 +28,7 @@
       <th>登録日時</th>
       <th>ステータス</th>
       <th>優先度</th>
+      <th>ラベル</th>
       <th>ユーザー名</th>
     </tr>
   </thead>
@@ -32,10 +37,15 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.content %></td>
-        <td><%= task.deadline %>　　</td>
+        <td><%= task.deadline %></td>
         <td><%= task.created_at.strftime('%Y-%m-%d %T') %></td>
-        <td><%= task.status %>　　</td>
-        <td><%= task.priority %>　　</td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td>
+        <% task.labels.each do |label| %>
+          <p class="badge badge-warning"><%= label.name %></p>
+        <% end %>
+      </td>
         <td><%= task.user.name %></td>
         <td><%= link_to '詳細', task_path(task.id), class: "btn btn-outline-primary" %></td>
         <td><%= link_to '編集', edit_task_path(task.id), class: "btn btn-outline-success" %></td>

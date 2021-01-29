@@ -1,6 +1,6 @@
 <h1>タスク詳細</h1><br>
 
-<table class="table table-striped w-75">
+<table class="table table-striped w-50">
   <tbody>
       <tr>
         <th><%= t('activerecord.attributes.task.name') %></th>
@@ -25,6 +25,13 @@
       <tr>
         <th><%= t('activerecord.attributes.task.priority') %></th>
         <td><%= @task.priority %>　　</td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.task.label') %></th>
+        <td> <% @task.labels.each do |label| %>
+          <p class="badge badge-warning"><%= label.name %></p>
+        <% end %>
+        </td>
       </tr>
   </tbody>
 </table><hr>
