@@ -8,7 +8,7 @@
 
 # *** 管理ユーザー1人作成
 name = "admin"
-email = "admin01@example.com"
+email = "admin02@example.com"
 password = "password"
 admin = "true"
 User.create!(
