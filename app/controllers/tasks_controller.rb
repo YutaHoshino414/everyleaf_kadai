@@ -1,12 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  
+  before_action :logged_in?, only: [:index, :new, :edit, :show]
+  before_action :authenticate_user, only: [:index]
+
   def index
-      @tasks = Task.all.page(params[:page]).per(5)
+      @tasks = current_user.tasks
+    #  @tasks = Task.all.order(created_at: :desc)
+    
     if params[:sort_expired]
-      @tasks = Task.all.order(deadline: :desc)
+      # @tasks = Task.all.order(deadline: :desc)
+      @tasks = current_user.tasks.order(deadline: :desc)
     else
-      @tasks = Task.all.order(created_at: :desc)
+      #  @tasks = Task.all.order(created_at: :desc)
+       @tasks = current_user.tasks.order(created_at: :desc)
     end  
 
     if params[:sort_priority]
@@ -31,7 +37,7 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to tasks_path, notice: "タスクを作成しました！"
     else

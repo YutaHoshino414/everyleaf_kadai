@@ -1,0 +1,24 @@
+<h2>ユーザー編集画面</h2><hr>
+<div class="w-50">
+  <%= form_with(model: @user, local: true, url: admin_user_path) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name %>
+      <%= form.text_field :name,  placeholder: "ユーザー名を入力..", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email %>
+      <%= form.text_field :email, placeholder: "メールアドレスを入力..", class: "form-control" %>
+    </div>
+    <div class="w-25 mb-3">
+      <%= form.label :admin %>
+      <%= form.select :admin,[['付与しない',false],['付与する',true]], { include_blank: '選択してください' }, class: "form-control" %> 
+    </div>
+    <%= form.label :password %>
+    <%= form.hidden_field :password, value: @user.password_digest %><br>
+    <%= form.label :password_confirmation %>
+    <%= form.hidden_field :password_confirmation, value: @user.password_digest %><br>
+    <br>
+    <br>
+      <%= form.submit '編集する', class: "btn btn-success" %>
+  <% end %>
+</div>
