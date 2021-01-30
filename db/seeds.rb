@@ -18,11 +18,13 @@ end
   name = "test#{@count}"
   email = "#{name}@hoge.com"
   password = "password"
+  admin = true
   @user = User.create!(
     name: name,
     email: email,
     password: password,
-    password_confirmation: password
+    password_confirmation: password,
+    admin: admin
   )
 
     10.times do |n|
