@@ -9,4 +9,6 @@ class Task < ApplicationRecord
   enum priority:{ 低: 0, 中: 1, 高: 2 }
 
   belongs_to :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
 end

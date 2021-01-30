@@ -27,8 +27,10 @@ class TasksController < ApplicationController
       
     elsif params[:status].present?
           @tasks = Task.where(status: params[:status])
-      end
+    end
     
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+
       @tasks = @tasks.page(params[:page]).per(5)
   end
 
@@ -38,6 +40,7 @@ class TasksController < ApplicationController
   
   def create
     @task = current_user.tasks.new(task_params)
+    
     if @task.save
       redirect_to tasks_path, notice: "タスクを作成しました！"
     else
@@ -66,7 +69,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:name, :content, :deadline, :status, :priority, { label_ids: [] })
   end
 
   def set_task
