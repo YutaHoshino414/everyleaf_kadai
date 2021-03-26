@@ -13,7 +13,7 @@
   Label.create!(name: name)
   @count += 1
 end
-
+# 本番では、test11〜20@hoge.comで作られた
 10.times do |n|
   name = "test#{@count}"
   email = "#{name}@hoge.com"
