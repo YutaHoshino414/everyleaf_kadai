@@ -31,7 +31,7 @@ class TasksController < ApplicationController
     
       @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
 
-      @tasks = @tasks.page(params[:page]).per(5)
+      @tasks = @tasks.page(params[:page]).per(20)
   end
 
   def new
